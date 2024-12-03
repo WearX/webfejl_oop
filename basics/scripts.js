@@ -68,3 +68,15 @@ jatekos2.meccsetJatszott();
 jatekos2.szintEllenorzes();
 jatekos2.meccsetJatszott();
 jatekos2.szintEllenorzes();
+
+function Person(name){
+    this.name = name
+}
+Person.prototype.GetName = function(){
+    return this.name
+}
+function Diak(name, school){
+    Person.call(this, name)
+    this.school = school
+}
+Object.setPrototypeOf(Diak.prototype, Diak.prototype)

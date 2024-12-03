@@ -69,14 +69,65 @@ jatekos2.szintEllenorzes();
 jatekos2.meccsetJatszott();
 jatekos2.szintEllenorzes();
 
-function Person(name){
-    this.name = name
+class Person{
+    constructor(nev) {
+        this.nev = nev;
+    }
+
+    getNev(){
+        return this.nev;
+    }
 }
-Person.prototype.GetName = function(){
-    return this.name
+
+class Diak extends Person{
+    constructor(nev, iskola) {
+        super(nev);
+        this.iskola = iskola;
+    }
+
+    getIskola(){
+        return this.iskola;
+    }
 }
-function Diak(name, school){
-    Person.call(this, name)
-    this.school = school
+
+const diak = new Diak("Kraftfahrzeughaftpflichtversicherung", "PTE");
+console.log(`Név: ${diak.getNev()}`);
+console.log(`Iskola: ${diak.getIskola()}`);
+
+// *** 20. feladat ***
+class Allat {
+    constructor(nev) {
+        this.nev = nev;
+
+    }
+    hangKiadas() {
+        console.log(`${this.nev} azt mondja: ${this.hang}`);
+    }
 }
-Object.setPrototypeOf(Diak.prototype, Diak.prototype)
+
+class Madar extends Allat {
+    constructor(nev) {
+        super(nev);
+    }
+    repules() {
+        console.log(`${this.nev} repül.`);
+    }
+}
+
+class Emlos extends Allat {
+    constructor(nev) {
+        super(nev);
+    }
+    jaras() {
+        console.log(`${this.nev} sétál.`);
+    }
+}
+
+const galamb = new Madar("Galamb");
+galamb.hangKiadas();
+galamb.repules();
+
+const macska = new Emlos("Madagaszkári hosszúujjú maki");
+macska.hangKiadas();
+macska.jaras();
+

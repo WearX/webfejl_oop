@@ -67,6 +67,9 @@ jatekos2.meccsetJatszott();
 jatekos2.meccsetJatszott();
 jatekos2.szintEllenorzes();
 jatekos2.meccsetJatszott();
+jatekos2.meccsetJatszott();
+jatekos2.meccsetJatszott();
+jatekos2.meccsetJatszott();
 jatekos2.szintEllenorzes();
 
 class Person{
@@ -101,7 +104,7 @@ class Allat {
 
     }
     hangKiadas() {
-        console.log(`${this.nev} azt mondja: ${this.hang}`);
+        console.log(`${this.nev} kiadott egy hangot.`);
     }
 }
 

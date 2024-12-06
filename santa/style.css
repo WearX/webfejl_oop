@@ -1,0 +1,87 @@
+/* body{
+    background-color: #333;
+    color: white;
+}
+table,tr,td,th{
+    border: 2px, solid, white;
+    border-collapse: collapse;
+}
+
+#products{
+    display: none;
+}
+#companion_name{
+    display: none;
+}
+
+#companion{
+    width: fit-content;
+    border: 5px solid rgb(84, 163, 84);
+}
+
+#product{
+    width: fit-content;
+    border: 5px solid rgb(84, 121, 190);
+}
+
+.row-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    height: 400px;
+    width: 400px;
+    border: 3px solid #0000;
+    border-radius: 12px;
+    background: linear-gradient(#131219, #131219) padding-box, linear-gradient(
+          var(--angle),
+          #070707,
+          #687aff
+        ) border-box;
+    animation: 8s rotate linear infinite;
+  }
+  
+  @keyframes rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+  
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  
+.row-container > *{
+    margin: 12px;
+    padding: 6px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    height: 400px;
+    width: 400px;
+    border: 3px solid #0000;
+    border-radius: 12px;
+    background: linear-gradient(#131219, #131219) padding-box, linear-gradient(
+            var(--angle),
+            #070707,
+            #687aff
+        ) border-box;
+    animation: 8s rotate linear infinite;
+    }
+
+    @keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+    }
+
+        @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+        }
+     */

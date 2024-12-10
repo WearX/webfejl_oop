@@ -30,26 +30,33 @@
 </div>
     <div class="row-container">
         <form id="companion">
-            <label for="cfirstname">Keresztnév</label><br>
-            <input id="cfirstname" name="cfirstname"><br><br>
+            <label for="cfirstname">Keresztnév</label>
+            <input id="cfirstname" name="cfirstname"><br>
     
-            <label for="clastname">Vezetéknév</label><br>
-            <input id="clastname" name="clastname"><br><br>
+            <label for="clastname">Vezetéknév</label>
+            <input id="clastname" name="clastname"><br>
     
-            <label for="carea">Részleg</label><br>
-            <input id="carea" name="carea"><br><br>
-    
+            <label for="carea">Részleg</label>
+            <select id="carea" name="carea">
+                <option></option>
+            </select>
+
             <button>Kompánia hozzáadása</button>
         </form>
         <form id="product">
-            <label for="companionlist">Manó</label><br>
+            <label for="companionlist">Manó</label>
             <select id="companionlist">
                 <option></option>
-            </select> <br><br>
+            </select>
     
-            <label for="productname">Product név</label><br>
-            <input id="productname" name="productname"><br><br>
+            <label for="productname">Product név</label>
+            <input id="productname" name="productname"><br>
             <button>Produktum hozzáadása a kompániához</button>
+        </form>
+        <form id="newareaform">
+            <label for="reszlegName">Részleg</label>
+            <input id="reszlegName" name="reszlegName">
+            <button>Részleg hozzáadása</button>
         </form>
     </div>
     

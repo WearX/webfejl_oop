@@ -1,11 +1,3 @@
-/**
- * @type {{
- *   firstName: string;
- *   lastName: string;
- *   products: string[];
- *   area: string;
- * }[]}
- */
 const companionList = [
     {
         firstName: 'Géza',
@@ -25,50 +17,45 @@ const companionList = [
         area: 'plastic',
         products: ['zokni']
     },
-]
+];
 const factory = new Factory();
 
-document.getElementById('companion').addEventListener('submit',function(e){
+document.getElementById('companion').addEventListener('submit', function (e) {
     e.preventDefault();
-    const form =  e.currentTarget
+    var form = e.currentTarget;
     addCompanion(form, factory);
+    form.reset();
 });
 
-document.getElementById('product').addEventListener('submit',function(e){
+document.getElementById('product').addEventListener('submit', function (e) {
     e.preventDefault();
-    const form = e.currentTarget;
-    addProductForm(form, factory)
+    var form = e.currentTarget;
+    addProductForm(form, factory);
 });
 
-/**
- * table render
- */
-function initTable(){
-    for(let i = 0; i < companionList.length; i ++){
-        const mano = companionList[i]
-        const comp = new Companion(i, mano.firstName, mano.lastName, mano.area)
-        for (const n of mano.products) {
-            comp.addProduct(n)
+document.getElementById('newareaform').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const reszlegName = e.target.querySelector('#reszlegName').value;
+    factory.addReszleg(reszlegName);
+    e.target.reset()
+});
+
+function initTable() {
+    for (let i = 0; i < companionList.length; i++) {
+        const data = companionList[i];
+        const comp = new Companion(i, data.firstName, data.lastName, data.area);
+
+        for (const product of data.products) {
+            comp.addProduct(product);
         }
-        console.log(comp)
 
-        factory.addMano(comp)
+        factory.addMano(comp);
+        factory.addReszleg(data.area)
     }
-    console.log(factory)
-    // TODO 6
+
+    populateAreaSelector(factory)
 }
 
 
-initTable()
 
-/**
- * 
- * eventlistener callback for the button click of companion
- * 
- * @param {EventTarget} e 
- */
-function checkEventListener(e){
-    const row = e.currentTarget.parentElement.parentElement;
-    const companionId = row.id;
-    // TODO 10
-}
+initTable();

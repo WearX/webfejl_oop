@@ -2,6 +2,7 @@ class Factory{
     constructor()
     {
         this.manolista = []
+        this.reszleglista = []
     }
     addMano(mano)
     {
@@ -12,7 +13,35 @@ class Factory{
     {
         return this.manolista.length
     }
- // TODO 1, 2, 3, 4, 9, 10
+    newId(){
+        return this.companionList.length;
+    }
+    addReszleg(reszleg){
+        if (!reszleg || this.reszleglista.indexOf(reszleg) !== -1) {
+            return
+        }
+
+        this.reszleglista.push(reszleg)
+
+        const selector = document.getElementById('carea')
+        const option = document.createElement('option')
+        option.value = reszleg
+        option.innerHTML = reszleg
+        selector.appendChild(option)
+    }
+    getCompanionById(id){
+        for (let i = 0; i < this.manolista.length; i++) {
+            if (this.manolista[i].id === id) {
+                return this.manolista[i]
+            }
+        }
+        return null
+    }
+    addComp(comp){
+        this.manolista.push(comp)
+        createRow(comp);
+        appendToSelector(comp.id, comp.getFullName());
+    } 
 }
 
 class Companion{
@@ -30,6 +59,4 @@ class Companion{
     getName(){ 
         return this.vezeteknev + " " + this.keresztnev
     }
-
-    // TODO 5
 }

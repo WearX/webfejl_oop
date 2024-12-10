@@ -1,87 +1,139 @@
-/* body{
-    background-color: #333;
+/* Alap beállítások */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a2e; /* Sötét kékes háttér */
+    color: #f1f1f1; /* Halvány fehér szöveg */
+    margin: 0;
+    padding: 0;
+}
+
+/* Sor konténerek */
+.row-container {
+    display: flex;
+    flex-wrap: wrap; /* Az elemek új sorba törhetnek, ha szükséges */
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #162447;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* Táblázatok */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1f4068; /* Sötét kék tábla */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #e43f5a; /* Piros fejlécek */
+    color: white;
+    text-transform: uppercase;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 10px;
+    
+    border: 1px solid #e43f5a; /* Piros keret */
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #1b1b2f; /* Alternáló sor színezés */
+}
+
+table tbody tr:hover {
+    background-color: #e43f5a; /* Hover kiemelés */
     color: white;
 }
-table,tr,td,th{
-    border: 2px, solid, white;
-    border-collapse: collapse;
+table tr:first-child th:first-child {
+    border-top-left-radius: 10px; /* Bal felső sarok lekerekítése */
 }
 
-#products{
-    display: none;
-}
-#companion_name{
-    display: none;
+table tr:first-child th:last-child {
+    border-top-right-radius: 10px; /* Jobb felső sarok lekerekítése */
 }
 
-#companion{
-    width: fit-content;
-    border: 5px solid rgb(84, 163, 84);
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Bal alsó sarok lekerekítése */
 }
 
-#product{
-    width: fit-content;
-    border: 5px solid rgb(84, 121, 190);
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Jobb alsó sarok lekerekítése */
 }
 
-.row-container{
+/* Formázás a h2 címekhez */
+h2 {
+    text-align: center;
+    margin: 20px;
+    font-size: 1.8em;
+    color: #e43f5a;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Formok */
+form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-    height: 400px;
-    width: 400px;
-    border: 3px solid #0000;
-    border-radius: 12px;
-    background: linear-gradient(#131219, #131219) padding-box, linear-gradient(
-          var(--angle),
-          #070707,
-          #687aff
-        ) border-box;
-    animation: 8s rotate linear infinite;
-  }
-  
-  @keyframes rotate {
-    to {
-      --angle: 360deg;
-    }
-  }
-  
-  @property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-  }
-  
-.row-container > *{
-    margin: 12px;
-    padding: 6px;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-    height: 400px;
-    width: 400px;
-    border: 3px solid #0000;
-    border-radius: 12px;
-    background: linear-gradient(#131219, #131219) padding-box, linear-gradient(
-            var(--angle),
-            #070707,
-            #687aff
-        ) border-box;
-    animation: 8s rotate linear infinite;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #1f4068;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+    flex: 1 1 calc(33% - 20px); /* 3 oszlopos elrendezés */
+    margin: 10px;
+}
+
+form label {
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+form input, form select, form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+form input, form select {
+    background-color: #162447;
+    color: #f1f1f1;
+}
+
+button {
+    background-color: #e43f5a;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e91e63;
+}
+
+/* Általános gomb stílus */
+button {
+    font-size: 1em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .row-container {
+        flex-direction: column;
+        gap: 20px;
     }
 
-    @keyframes rotate {
-    to {
-        --angle: 360deg;
+    form {
+        max-width: 100%;
+        flex: 1 1 100%; /* A formok kitöltik a rendelkezésre álló helyet mobilon */
     }
-    }
-
-        @property --angle {
-        syntax: "<angle>";
-        initial-value: 0deg;
-        inherits: false;
-        }
-     */
+}

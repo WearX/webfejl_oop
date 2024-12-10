@@ -7,6 +7,7 @@ function createRow(companion){
     const table = document.getElementById('companions');
     const tbody = table.querySelector('tbody');
     const tableRow = document.createElement('tr');
+    tableRow.id = companion.id;
     tbody.appendChild(tableRow);
 
     const td_1 = createCell(tableRow)
@@ -14,15 +15,18 @@ function createRow(companion){
     const td_2 = createCell(tableRow)
     td_2.innerHTML = companion.reszleg
 
-
-    
-   // TODO 7
-
     const action = createCell(tableRow)
     const button = document.createElement('button');
     button.innerHTML = 'Megtekint';
     action.appendChild(button)
-    button.addEventListener('click', checkEventListener)
+    
+    button.addEventListener('click', function () {
+        const companionId = parseInt(tableRow.id, 10)
+        const companion = factory.getCompanionById(companionId)
+        if (companion){
+            refreshProductList(companion)
+        }
+    });
 }
 
 /**
@@ -42,15 +46,17 @@ function createCell(parentElement){
  * Append a new companion to the selector
  * 
  */
-function appendToSelector(){
+function appendToSelector(companion){
     const productForm = document.getElementById('product')
-    const selector = productForm.querySelector('#companionlist');
+    const selector = productForm.querySelector('#companionlist')
 
-    const option = document.createElement('option');
-    // TODO 11.
+    const option = document.createElement('option')
+    option.value = companion.id;
+    option.textContent = companion.getName();
 
-    selector.appendChild(option);
+    selector.appendChild(option)
 }
+
 
 
 /**
@@ -59,16 +65,34 @@ function appendToSelector(){
  * 
  * @param {Companion} companion 
  */
-function refreshProductList(companion){ //TODO
-
+function refreshProductList(companion){
     const companionName = document.getElementById('companion_name');
-    // TODO 10
+    companionName.innerHTML = companion.getName();
     companionName.style.display = 'block';
+
     const productTable = document.getElementById('products');
     productTable.style.display = 'table';
-    const productTableBody = productTable.querySelector('tbody')
+    const productTableBody = productTable.querySelector('tbody');
     productTableBody.innerHTML = '';
-    // TODO 10
+
+    for (let i = 0; i < companion.products.length; i++) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.textContent = companion.products[i];
+        row.appendChild(cell);
+        productTableBody.appendChild(row);
+    }
+}
+
+function populateAreaSelector(factory) {
+    const areaSelector = document.getElementById('carea');
+    areaSelector.innerHTML = '';
+    factory.reszleglista.forEach((area) => {
+        const option = document.createElement('option');
+        option.value = area;
+        option.textContent = area;
+        areaSelector.appendChild(option);
+    });
 }
 
 /**
@@ -79,18 +103,14 @@ function refreshProductList(companion){ //TODO
  * @param {Factory} factory 
  */
 function addCompanion(form, factory){ //TODO 
-    const firstName =form.querySelector('#cfirstname')
-    const lastname =form.querySelector('#clastname')
-    const area = form.querySelector('#carea')
-    const firstNameValue = firstName.value;
-    const lastNameValue = lastname.value;
-    const areaValue = area.value;
+    const firstName = form.querySelector('#cfirstname').value;
+    const lastName = form.querySelector('#clastname').value;
+    const area = form.querySelector('#carea').value;
 
     const id = factory.createID()
-    const companion = new Companion(id, firstNameValue, lastNameValue, areaValue)
+    const companion = new Companion(id, firstName, lastName, area)
     factory.addMano(companion)
-    console.log(companion)
-    // TODO 6
+    appendToSelector(companion)
 }
 
 /**
@@ -100,10 +120,29 @@ function addCompanion(form, factory){ //TODO
  * @param {HTMLFormElement} form 
  */
 
-function addProductForm(form, factory){ // TODO
-    const selector =form.querySelector('#companionlist')
-    const productName = form.querySelector('#productname')
-    const companionId = selector.value;
-    const product = productName.value;
-    // 12
+function addProductForm(form, factory){
+    const selector = form.querySelector('#companionlist')
+    const productName = form.querySelector('#productname').value
+    const companionId = parseInt(selector.value, 10)
+
+    const companion = factory.getCompanionById(companionId)
+    if (companion){
+        companion.addProduct(productName)
+        factory.refreshProductList(companion)
+    }
+}
+
+
+/**
+ * event listener a gombhoz
+ * 
+ * @param {Event} e 
+ */
+function checkEventListener(e){
+    const row = e.currentTarget.parentElement.parentElement
+    const companionId = parseInt(row.id, 10)
+    const companion = factory.getCompanionById(companionId)
+    if (companion){
+        factory.refreshProductList(companion)
+    }
 }

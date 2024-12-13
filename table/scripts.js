@@ -81,6 +81,19 @@ function init(){
     const tbody = document.getElementById('tbodyId')
     const form = document.getElementById('form')
     const ctrl = new FormController(form)
+    addEventListener('submit', function(e){
+        e.preventDefault()
+
+        const obj = {
+            lastname: ctrl.lastname,
+            firstname1: ctrl.firstname1,
+            firstname2: ctrl.firstname2
+        }
+
+
+        const pers = new Person(obj)
+        pers.render(tbody)
+    })
     for(const elem of array){
         const person = new Person(elem)
         person.render(tbody)
@@ -88,7 +101,7 @@ function init(){
     }
     
     
-    init()  
     
     
 }
+init()  

@@ -29,8 +29,19 @@ class ArrayList {
     }
 
     Clear(){
+        for (let i = 0; i < this.#lenght; i++){
+            delete this[i]
+        }
         this.#lenght = 0
         this.#state = {}
+    }
+    Contains(item) {
+        for (let i = 0; i < this.#lenght; i++){
+            if (this.#state[i] === item){
+                return true
+            }
+        }
+        return false
     }
 
 
@@ -49,7 +60,11 @@ const kufirc = new ArrayList()
 kufirc.Add(5)
 console.log(kufirc[0])
 console.log(kufirc)    
-kufirc.Add("asd")
+kufirc.Add("alma")
 console.log(kufirc)
-kufirc.Add({new:'Jozsi'})
+kufirc.Add({nev:'Jozsi'})
 console.log(kufirc)
+
+console.log(kufirc.Contains(5)) // true
+console.log(kufirc.Contains("alma")) // true
+console.log(kufirc.Contains({ nev: "Jozsi" })) // false mert nem ugyan az a ref

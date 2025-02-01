@@ -97,6 +97,33 @@ const dataManager = new DataManager(
 )
 const dataTable = new DataTable(dataManager)
 
+const container = document.createElement("div")
 
+const nameLabel = document.createElement("label")
+nameLabel.textContent = "Név szerinti szűrés:"
+const nameInput = document.createElement("input")
+nameInput.type = "text"
+nameLabel.appendChild(nameInput)
+container.appendChild(nameLabel)
 
+const ageLabel = document.createElement("label")
+ageLabel.textContent = "Életkor szerinti szűrés: "
+const ageInput = document.createElement("input")
+ageInput.type = "text"
+ageLabel.appendChild(ageInput)
+container.appendChild(ageLabel)
+
+document.body.insertBefore(container, document.body.firstChild)
+
+nameInput.addEventListener("input", () =>{
+  dataManager.filterName(nameInput.value)
+})
+
+ageInput.addEventListener("input", () =>{
+  if (ageInput.value.trim() === ""){
+    dataManager.reset()
+  } else {
+    dataManager.filterAge(Number(ageInput.value))
+  }
+})
 
